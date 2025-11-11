@@ -1,0 +1,69 @@
+repositories:
+  apriltag_ros:
+    type: git
+    url: https://github.com/christianrauch/apriltag_ros
+    version: master
+  easy_handeye2:
+    type: git
+    url: https://github.com/mhyatt000/easy_handeye2
+    version: main
+  eigen3_cmake_module:
+    type: git
+    url: https://github.com/ros2/eigen3_cmake_module
+    version: humble
+  eigen_stl_containers:
+    type: git
+    url: https://github.com/ros/eigen_stl_containers
+    version: ros2
+  franka_spacemouse:
+    type: git
+    url: https://github.com/frankarobotics/franka_spacemouse
+    version: main
+  joystick_drivers:
+    type: git
+    url: https://github.com/ros-drivers/joystick_drivers
+    version: ros2
+  launch_param_builder:
+    type: git
+    url: https://github.com/PickNikRobotics/launch_param_builder
+    version: main
+  moveit2:
+    type: git
+    url: https://github.com/ros-planning/moveit2
+    version: humble
+  moveit2_tutorials:
+    type: git
+    url: https://github.com/ros-planning/moveit2_tutorials
+    version: humble
+  moveit_resources:
+    type: git
+    url: https://github.com/ros-planning/moveit_resources
+    version: humble
+  moveit_task_constructor:
+    type: git
+    url: https://github.com/ros-planning/moveit_task_constructor.git
+    version: humble
+  moveit_visual_tools:
+    type: git
+    url: https://github.com/ros-planning/moveit_visual_tools
+    version: ros2
+  rosparam_shortcuts:
+    type: git
+    url: https://github.com/PickNikRobotics/rosparam_shortcuts
+    version: ros2
+  srdfdom:
+    type: git
+    url: https://github.com/ros-planning/srdfdom.git
+    version: ros2
+  usb_camera_driver:
+    type: git
+    url: https://github.com/shinkansan/ros2_logitech_brio_publisher.git
+    version: dashing-devel
+  xarm_ros2:
+    type: git
+    url: https://github.com/xArm-Developer/xarm_ros2.git
+    version: humble
+  xnodes:
+    type: git
+    url: https://github.com/mhyatt000/xnodes
+    version: main

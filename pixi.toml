@@ -9,16 +9,16 @@ version = "0.1.0"
 build = {cmd = "colcon build --symlink-install", inputs = ["src"]}
 turtle = "ros2 run turtlesim turtlesim_node"
 
-ws_init = "mkdir -p $PIXI_PROJECT_ROOT/src"
-ws_import = "mkdir -p $PIXI_PROJECT_ROOT/src && vcs import $PIXI_PROJECT_ROOT/src < ${REPOS_FILE:-$PIXI_PROJECT_ROOT/ws.repos}"
-ws_pull = "vcs pull $PIXI_PROJECT_ROOT/src"
-ws_export = "vcs export $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.repos}"
-ws_pin = "vcs export --exact $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.pinned.repos}"
-ws_status = "vcs status $PIXI_PROJECT_ROOT/src"
-ws_diff = "vcs diff $PIXI_PROJECT_ROOT/src"
-ws_build = "cd $PIXI_PROJECT_ROOT && colcon build --symlink-install"
-ws_clean = "cd $PIXI_PROJECT_ROOT && rm -rf build install log"
-ws_env = "cd $PIXI_PROJECT_ROOT && source install/setup.bash && bash"
+ws_init = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src'"
+ws_import = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src && vcs import $PIXI_PROJECT_ROOT/src < ${REPOS_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
+ws_pull = "bash -c 'vcs pull $PIXI_PROJECT_ROOT/src'"
+ws_export = "bash -c 'vcs export $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
+ws_pin = "bash -c 'vcs export --exact $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.pinned.repos}'"
+ws_status = "bash -c 'vcs status $PIXI_PROJECT_ROOT/src'"
+ws_diff = "bash -c 'vcs diff $PIXI_PROJECT_ROOT/src'"
+ws_build = "bash -c 'cd $PIXI_PROJECT_ROOT && colcon build --symlink-install'"
+ws_clean = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build install log'"
+ws_env = "bash -c 'cd $PIXI_PROJECT_ROOT && source install/setup.bash && source env.sh && pixi shell'"
 
 
 [dependencies]
