@@ -1,0 +1,9 @@
+mhyatt@agent:~/ws/src/xnodes/setup/camera$ udevadm info --name=/dev/vi
+E: ID_SERIAL=046d_Logitech_Webcam_C930e_AD3F052E
+E: ID_SERIAL_SHORT=AD3F052E
+mhyatt@agent:~/ws/src/xnodes/setup/camera$ udevadm info --name=/dev/vi
+E: ID_SERIAL=046d_Logitech_Webcam_C930e_F95DA4BE
+E: ID_SERIAL_SHORT=F95DA4BE
+mhyatt@agent:~/ws/src/xnodes/setup/camera$ udevadm info --name=/dev/vi
+E: ID_SERIAL=046d_Logitech_Webcam_C930e_4089B49E
+E: ID_SERIAL_SHORT=4089B49E

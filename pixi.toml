@@ -18,7 +18,8 @@ ws_status = "bash -c 'vcs status $PIXI_PROJECT_ROOT/src'"
 ws_diff = "bash -c 'vcs diff $PIXI_PROJECT_ROOT/src'"
 ws_build = "bash -c 'cd $PIXI_PROJECT_ROOT && colcon build --symlink-install'"
 ws_clean = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build install log'"
-ws_env = "bash -c 'cd $PIXI_PROJECT_ROOT && source install/setup.bash && source env.sh && pixi shell'"
+
+env = "bash -c 'cd $PIXI_PROJECT_ROOT && source install/setup.bash && source env.sh'"
 
 
 [dependencies]
@@ -55,3 +56,9 @@ ros-humble-ros-testing = ">=0.4.0,<0.5"
 eigen = ">=3.4.0,<4"
 ros-humble-eigen3-cmake-module = ">=0.1.1,<0.2"
 ros-humble-eigen-stl-containers = ">=1.1.0,<2"
+tyro = ">=0.9.35,<0.10"
+rich = ">=14.2.0,<15"
+ros-humble-usb-cam = { version = ">=0.8.1,<0.9", channel = "robostack-staging" }
+ros-humble-rqt-plot = { version = ">=1.1.5,<2", channel = "robostack-staging" }
+ros-humble-rqt-bag = { version = ">=1.1.5,<2", channel = "robostack-staging" }
+ros-humble-rqt-bag-plugins = { version = ">=1.1.5,<2", channel = "robostack-staging" }

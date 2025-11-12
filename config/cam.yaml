@@ -1,0 +1,17 @@
+/low/camera_info:
+  ros__parameters:
+    framerate: 10.0
+    frame_id: low
+    camera_info_url: "file://$PIXI_PROJECT_ROOT/config/camera_info/low.yaml"
+
+/side/camera_info:
+  ros__parameters:
+    framerate: 10.0
+    frame_id: side
+    camera_info_url: "file://$PIXI_PROJECT_ROOT/config/camera_info/side.yaml"
+
+/over/camera_info:
+  ros__parameters:
+    framerate: 10.0
+    frame_id: over
+    camera_info_url: "file://$PIXI_PROJECT_ROOT/config/camera_info/over.yaml"

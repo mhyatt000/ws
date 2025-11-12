@@ -55,10 +55,6 @@ repositories:
     type: git
     url: https://github.com/ros-planning/srdfdom.git
     version: ros2
-  usb_camera_driver:
-    type: git
-    url: https://github.com/shinkansan/ros2_logitech_brio_publisher.git
-    version: dashing-devel
   xarm_ros2:
     type: git
     url: https://github.com/xArm-Developer/xarm_ros2.git
