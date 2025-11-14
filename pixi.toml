@@ -5,6 +5,20 @@ name = "ws"
 platforms = ["linux-64"]
 version = "0.1.0"
 
+[activation.env]
+MYVAR = "enabled"
+
+[activation]
+scripts = ["install/setup.sh", "env.sh"]
+
+[feature.cuda.system-requirements]
+cuda = "12"
+
+[environments]
+cuda = ["cuda"]
+default = ['default']
+
+
 [tasks]
 build = {cmd = "colcon build --symlink-install", inputs = ["src"]}
 turtle = "ros2 run turtlesim turtlesim_node"
@@ -20,6 +34,11 @@ ws_build = "bash -c 'cd $PIXI_PROJECT_ROOT && colcon build --symlink-install'"
 ws_clean = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build install log'"
 
 env = "bash -c 'cd $PIXI_PROJECT_ROOT && source install/setup.bash && source env.sh'"
+
+[pypi-dependencies]
+roboreg = "==0.4.6"
+tyro = "*"
+rich = "*"
 
 
 [dependencies]
@@ -62,3 +81,5 @@ ros-humble-usb-cam = { version = ">=0.8.1,<0.9", channel = "robostack-staging" }
 ros-humble-rqt-plot = { version = ">=1.1.5,<2", channel = "robostack-staging" }
 ros-humble-rqt-bag = { version = ">=1.1.5,<2", channel = "robostack-staging" }
 ros-humble-rqt-bag-plugins = { version = ">=1.1.5,<2", channel = "robostack-staging" }
+transforms3d = ">=0.4.2,<0.5"
+numpy = ">=1.26.4,<2"
