@@ -46,17 +46,14 @@ Use the bundled tasks to keep the workspace synchronized:
 Simulation assets, bag files, and other large datasets should be stored outside the git repository (e.g., under `~/ros_data`) and referenced from package configuration. Document any additional data requirements in the relevant package README.
 
 ## Contributing
-We follow a lightweight GitFlow-inspired process:
 - Create feature branches from `main` using the format `feature/<short-description>` or `fix/<short-description>`.
 - Keep commits focused and descriptive. Use conventional commit prefixes when possible (e.g., `feat:`, `fix:`, `docs:`).
 - Before opening a pull request, ensure the workspace builds cleanly: `pixi run build` and run any package-specific tests.
-- Format C++ code with `ament_clang_format` and Python code with `ruff`/`black` if available in the package; ROS launch files should remain readable and well-commented.
+- Format C++ code with `ament_clang_format` and Python code with `ruff` if available in the package; ROS launch files should remain readable and well-commented.
 
 When submitting a PR:
 1. Rebase onto the latest `main` and resolve conflicts locally.
 2. Provide context in the PR description—include affected packages, testing steps, and any data requirements.
 3. Request review from another team member. Reviews should check for build success, adherence to ROS best practices, and updated documentation.
 
-For new contributors, start by reading the `setup/` scripts and `pixi.toml` to understand environment configuration, then try building and running the sample tasks above. Do not hesitate to ask for access to any private repositories referenced in `ws.repos`.
-
-Happy hacking!
+For new contributors, start by reading the `setup/` scripts and `pixi.toml` to understand environment configuration, then try building and running the sample tasks above. Do not hesitate to ask for access to any repositories referenced in `ws.repos`.
