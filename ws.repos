@@ -23,6 +23,10 @@ repositories:
     type: git
     url: https://github.com/ros-drivers/joystick_drivers
     version: ros2
+  kalibr:
+    type: git
+    url: https://github.com/ethz-asl/kalibr
+    version: master
   launch_param_builder:
     type: git
     url: https://github.com/PickNikRobotics/launch_param_builder
@@ -47,6 +51,10 @@ repositories:
     type: git
     url: https://github.com/ros-planning/moveit_visual_tools
     version: ros2
+  ros2_roboreg:
+    type: git
+    url: https://github.com/lbr-stack/ros2_roboreg.git
+    version: humble
   rosparam_shortcuts:
     type: git
     url: https://github.com/PickNikRobotics/rosparam_shortcuts
