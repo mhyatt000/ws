@@ -1,0 +1,5 @@
+# Camera parameters used during development builds
+frame_id: camera_optical_frame
+exposure: auto
+white_balance: daylight
+resolution: 1280x720
