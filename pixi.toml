@@ -12,7 +12,7 @@ version = "0.1.0"
 default = { features = ["base", 'buildhost'], no-default-feature = true }
 # ensure host tools are present when you select cuda on mac (for locking)
 cuda = { features = ["base","cuda","buildhost"], no-default-feature = true }
-# osx = ['osx']
+osx = { features = ["osx", "base","buildhost"], no-default-feature = true }
 
 [feature.base.activation.env]
 MYVAR = "enabled"
@@ -23,9 +23,13 @@ scripts = ["install/setup.sh", "env.sh"]
 # https://pixi.sh/latest/workspace/multi_environment/#real-world-example-use-cases
 [feature.cuda]
 platforms = ["linux-64"]
-
 [feature.cuda.system-requirements]
 cuda = "12.2"
+
+[feature.osx]
+platforms = ["osx-arm64"]
+[feature.osx.activation]
+scripts = ["install/setup.zsh", "env.sh"]
 
 
 [feature.base.tasks]
@@ -105,6 +109,13 @@ numpy = ">=1.26.4,<2"
 ros-humble-usb-cam = { version = ">=0.8.1,<0.9", channel = "robostack-staging" }
 ros-humble-franka-msgs = ">=1.0.0,<2"
 ros-humble-franka-semantic-components = ">=1.0.0,<2"
+
+[dependencies]
+ros-humble-joy = "*"
+ros-humble-rosbridge-server = "*"
+ros-humble-web-video-server = "*"
+ros-humble-rviz2 = "*"
+ros-humble-teleop-twist-joy = "*"
 
 
 # ==========
