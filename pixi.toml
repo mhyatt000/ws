@@ -10,15 +10,15 @@ platforms = [
 version = "0.1.0"
 
 [environments]
-default = { features = ["base", 'buildhost'], no-default-feature = true }
+default = { features = ["default", 'buildhost']}
 # ensure host tools are present when you select cuda on mac (for locking)
-cuda = { features = ["base","cuda","buildhost"], no-default-feature = true }
-osx = { features = ["osx", "base","buildhost"], no-default-feature = true }
+cuda = { features = ["default","cuda","buildhost"] }
+osx = { features = ["osx", "default","buildhost"] }
 
-[feature.base.activation.env]
+[activation.env]
 MYVAR = "enabled"
 
-[feature.base.activation]
+[activation]
 scripts = ["install/setup.sh", "env.sh"]
 
 # https://pixi.sh/latest/workspace/multi_environment/#real-world-example-use-cases
@@ -32,8 +32,8 @@ platforms = ["osx-arm64", "osx-64"]
 [feature.osx.activation]
 scripts = ["install/setup.zsh", "env.sh"]
 
-
-[feature.base.tasks]
+[tasks]
+rqt = {cmd = "ros2 run rqt_image_view rqt_image_view", inputs = ["src"]}
 build = {cmd = "colcon build --symlink-install", inputs = ["src"]}
 turtle = "ros2 run turtlesim turtlesim_node"
 
@@ -58,11 +58,16 @@ pip = "*"
 # default
 # ==========
 
-[feature.base.pypi-dependencies]
+[pypi-dependencies]
 tyro = "*"
 rich = "*"
+vcstool = "*"
+pupil-apriltags =  "*" 
+pydantic = "*"
+scipy = ">=1.16.3, <2"
 
-[feature.base.dependencies]
+
+[dependencies]
 python = "3.11.*"
 pip = "*"
 # 
@@ -104,19 +109,18 @@ ros-humble-rqt-bag = { version = ">=1.1.5,<2", channel = "robostack-staging" }
 ros-humble-rqt-bag-plugins = { version = ">=1.1.5,<2", channel = "robostack-staging" }
 transforms3d = ">=0.4.2,<0.5"
 numpy = ">=1.26.4,<2"
+ros-humble-joy = "*"
+ros-humble-rosbridge-server = "*"
+# ros-humble-web-video-server = "*"
+ros-humble-rviz2 = "*"
+ros-humble-teleop-twist-joy = "*"
+ros-humble-cyclonedds = "*"
 
 # https://robostack.github.io/humble.html
 [target.linux-64.dependencies]
 ros-humble-usb-cam = { version = ">=0.8.1,<0.9", channel = "robostack-staging" }
 ros-humble-franka-msgs = ">=1.0.0,<2"
 ros-humble-franka-semantic-components = ">=1.0.0,<2"
-
-[dependencies]
-ros-humble-joy = "*"
-ros-humble-rosbridge-server = "*"
-ros-humble-web-video-server = "*"
-ros-humble-rviz2 = "*"
-ros-humble-teleop-twist-joy = "*"
 
 
 # ==========
