@@ -1,4 +1,5 @@
-# ROS 2 Workspace Onboarding Guide
+# ROS 2 Workspace
+a version controlled collection of ROS2 tools for quick startup
 
 ## Overview
 This repository provides a pre-configured [ROS 2 Humble](https://docs.ros.org/en/humble/) workspace that is managed with [pixi](https://prefix.dev/). It is meant to give robotics teams a consistent, reproducible starting point for simulation, perception, and motion-planning projects. The workspace bundles commonly used desktop tooling (RViz, Gazebo), navigation stacks, MoveIt, and developer utilities so that new contributors can immediately focus on building nodes instead of configuring their environment.
