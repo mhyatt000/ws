@@ -25,6 +25,8 @@ Key capabilities include:
    - To start with an empty workspace: `pixi run ws_init`
    - To import repositories listed in `ws.repos`: `pixi run ws_import`
    These commands populate the `src/` folder using `vcs`.
+   - The import task now passes `--recursive` so that submodules are fetched automatically. This is required for repositories
+     such as `moveit_task_constructor` (pulls in `pybind11` and `scope_guard`) and `xarm_ros2` (pulls in the `xArm-CPLUS-SDK`).
 5. **Build the workspace**:
    ```bash
    pixi run build

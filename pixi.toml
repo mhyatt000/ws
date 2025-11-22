@@ -38,7 +38,7 @@ build = {cmd = "colcon build --symlink-install", inputs = ["src"]}
 turtle = "ros2 run turtlesim turtlesim_node"
 
 ws_init = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src'"
-ws_import = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src && vcs import $PIXI_PROJECT_ROOT/src < ${REPOS_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
+ws_import = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src && vcs import --recursive $PIXI_PROJECT_ROOT/src < ${REPOS_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
 ws_pull = "bash -c 'vcs pull $PIXI_PROJECT_ROOT/src'"
 ws_export = "bash -c 'vcs export $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
 ws_pin = "bash -c 'vcs export --exact $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.pinned.repos}'"
