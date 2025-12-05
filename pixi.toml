@@ -4,55 +4,43 @@ channels = ["robostack-staging", 'robostack', "conda-forge"]
 name = "ws"
 platforms = [
 "linux-64", 
-'osx-arm64', # m1..4
-'osx-64' # intel
 ]
 version = "0.1.0"
 
 [environments]
-default = { features = ["default", 'buildhost']}
-# ensure host tools are present when you select cuda on mac (for locking)
-cuda = { features = ["default","cuda","buildhost"] }
-osx = { features = ["osx", "default","buildhost"] }
+default = { features = ["default"]}
 
 [activation.env]
 MYVAR = "enabled"
 
 [activation]
-scripts = ["install/setup.sh", "env.sh"]
+scripts = [".pixi.sh"]
 
 # https://pixi.sh/latest/workspace/multi_environment/#real-world-example-use-cases
-[feature.cuda]
-platforms = ["linux-64"]
-[feature.cuda.system-requirements]
-cuda = "12.2"
-
-[feature.osx]
-platforms = ["osx-arm64", "osx-64"]
-[feature.osx.activation]
-scripts = ["install/setup.zsh", "env.sh"]
 
 [tasks]
 rqt = {cmd = "ros2 run rqt_image_view rqt_image_view", inputs = ["src"]}
-build = {cmd = "colcon build --symlink-install", inputs = ["src"]}
-turtle = "ros2 run turtlesim turtlesim_node"
+build = {cmd = "cd $PIXI_PROJECT_ROOT && colcon build --symlink-install", inputs = ["src"]}
+turtle = {cmd =  "ros2 run turtlesim turtlesim_node", inputs = ["src"]}
 
-ws_init = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src'"
-ws_import = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src && vcs import $PIXI_PROJECT_ROOT/src < ${REPOS_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
-ws_pull = "bash -c 'vcs pull $PIXI_PROJECT_ROOT/src'"
-ws_export = "bash -c 'vcs export $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
-ws_pin = "bash -c 'vcs export --exact $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.pinned.repos}'"
-ws_status = "bash -c 'vcs status $PIXI_PROJECT_ROOT/src'"
-ws_diff = "bash -c 'vcs diff $PIXI_PROJECT_ROOT/src'"
-ws_build = "bash -c 'cd $PIXI_PROJECT_ROOT && colcon build --symlink-install'"
-ws_clean = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build install log'"
+init = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src'"
+import = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src && vcs import $PIXI_PROJECT_ROOT/src < ${REPOS_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
+pull = "bash -c 'vcs pull $PIXI_PROJECT_ROOT/src'"
+export = "bash -c 'vcs export $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
+pin = "bash -c 'vcs export --exact $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PROJECT_ROOT/ws.pinned.repos}'"
+status = "bash -c 'vcs status $PIXI_PROJECT_ROOT/src'"
+diff = "bash -c 'vcs diff $PIXI_PROJECT_ROOT/src'"
+clean = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build install log'"
 
+[tasks.init_xarm]
+cmd = "git submodule update --init --recursive && git pull --recurse-submodules"
+inputs = ["src/xarm_ros2"]
+cwd = "src/xarm_ros2"
+env = { ARGUMENT = "hello" }
 
-[feature.buildhost]
-platforms = ["osx-arm64", "osx-64"]
-[feature.buildhost.dependencies]
-python = "3.11.*"
-pip = "*"
+[tasks.build_xarm]
+cmd = "colcon build --base-paths $PIXI_PROJECT_ROOT/src/xarm_ros2"
+depends-on = ["init_xarm"]
 
 # ==========
 # default
@@ -66,68 +54,35 @@ pupil-apriltags =  "*"
 pydantic = "*"
 scipy = ">=1.16.3, <2"
 
-
 [dependencies]
 python = "3.11.*"
 pip = "*"
-# 
-ros-humble-desktop = ">=0.10.0,<0.11"
-ros-humble-ament-cmake-auto = ">=1.3.12,<2"
-compilers = ">=1.11.0,<2"
-pkg-config = ">=0.29.2,<0.30"
-cmake = ">=4.1.2,<5"
-ninja = ">=1.13.1,<2"
-colcon-common-extensions = ">=0.3.0,<0.4"
-setuptools = "<=58.2.0"
-ros-humble-joint-state-publisher = ">=2.4.0,<3"
-ros-humble-xacro = ">=2.0.13,<3"
-ros-humble-slam-toolbox = ">=2.6.10,<3"
-ros-humble-nav2-bringup = ">=1.1.18,<2"
-ros-humble-navigation2 = ">=1.1.18,<2"
-ros-humble-rmw-cyclonedds-cpp = ">=1.3.4,<2"
-ros-humble-moveit-msgs = ">=2.2.1,<3"
-ros-humble-apriltag-msgs = ">=2.0.1,<3"
-ros-humble-controller-interface = ">=2.51.0,<3"
-ros-humble-ros2-control = ">=2.51.0,<3"
-ros-humble-ros2-controllers = ">=2.48.0,<3"
-sdl2 = ">=2.32.54,<3"
-# apriltag = ">=3.4.5,<4"
-ros-humble-gazebo-ros-pkgs = ">=3.9.0,<4"
-gazebo = ">=11.15.1,<12"
-ros-humble-moveit = ">=2.5.9,<3"
-rosdep = ">=0.26.0,<0.27"
-ros-humble-ament-cmake-clang-format = ">=0.12.12,<0.13"
-clang-format = ">=21.1.0,<22"
-ros-humble-ros-testing = ">=0.4.0,<0.5"
-eigen = ">=3.4.0,<4"
-ros-humble-eigen3-cmake-module = ">=0.1.1,<0.2"
-ros-humble-eigen-stl-containers = ">=1.1.0,<2"
-tyro = ">=0.9.35,<0.10"
-rich = ">=14.2.0,<15"
-ros-humble-rqt-plot = { version = ">=1.1.5,<2", channel = "robostack-staging" }
-ros-humble-rqt-bag = { version = ">=1.1.5,<2", channel = "robostack-staging" }
-ros-humble-rqt-bag-plugins = { version = ">=1.1.5,<2", channel = "robostack-staging" }
-transforms3d = ">=0.4.2,<0.5"
-numpy = ">=1.26.4,<2"
-ros-humble-joy = "*"
-ros-humble-rosbridge-server = "*"
-# ros-humble-web-video-server = "*"
-ros-humble-rviz2 = "*"
-ros-humble-teleop-twist-joy = "*"
+
+# Core ROS
+ros-humble-desktop = ">=0.10.0,<0.11"   # includes rviz2, tf2, rosbag2, etc.
+ros-humble-rmw-cyclonedds-cpp = "*"     # rmw backend
 ros-humble-cyclonedds = "*"
 
-# https://robostack.github.io/humble.html
-[target.linux-64.dependencies]
-ros-humble-usb-cam = { version = ">=0.8.1,<0.9", channel = "robostack-staging" }
-ros-humble-franka-msgs = ">=1.0.0,<2"
-ros-humble-franka-semantic-components = ">=1.0.0,<2"
+# xArm + control stack
+ros-humble-ros2-control = "*"
+ros-humble-ros2-controllers = "*"
+ros-humble-controller-interface = "*"
 
+# Needed by xarm_ros2
+ros-humble-joint-state-publisher = "*"
+ros-humble-xacro = "*"
+ros-humble-moveit-msgs = "*"            # xArm packages depend on this, even without MoveIt
+ros-humble-moveit = "*"
+ros-humble-apriltag-msgs = "*"          # only if your workspace references them
+ros-humble-gazebo-ros-pkgs = "*"
+gazebo = "*"
 
-# ==========
-# CUDA
-# ==========
+# Utilities
+colcon-common-extensions = "*"
+pkg-config = "*"
+cmake = "*"
+ninja = "*"
 
-[feature.cuda.pypi-dependencies]
-roboreg = "==0.4.6"
-jaxlib = ">=0.4.5"
-jax = ">=0.4.5"
+# Python libs
+numpy = ">=1.26.4,<2"
+transforms3d = "*"
