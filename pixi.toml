@@ -80,7 +80,7 @@ gazebo = "*"
 # Utilities
 colcon-common-extensions = "*"
 pkg-config = "*"
-cmake = "*"
+cmake = ">=3.22,<4"
 ninja = "*"
 
 # Python libs
