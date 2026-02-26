@@ -34,6 +34,12 @@ pin = "bash -c 'vcs export --exact $PIXI_PROJECT_ROOT/src > ${OUT_FILE:-$PIXI_PR
 status = "bash -c 'vcs status $PIXI_PROJECT_ROOT/src'"
 diff = "bash -c 'vcs diff $PIXI_PROJECT_ROOT/src'"
 clean = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build install log'"
+clean_xnodes = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build/xnodes install/xnodes'"
+setup = "bash -lc 'cd $PIXI_PROJECT_ROOT && source install/setup.bash'"
+
+[tasks.build_xnodes]
+cmd = "bash -lc 'cd $PIXI_PROJECT_ROOT && colcon build --symlink-install --packages-select xnodes'"
+depends-on = ["clean_xnodes"]
 
 [tasks.init_xarm]
 cmd = "git submodule update --init --recursive && git pull --recurse-submodules"
