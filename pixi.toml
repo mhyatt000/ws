@@ -38,7 +38,7 @@ clean_xnodes = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build/xnodes install/xn
 setup = "bash -lc 'cd $PIXI_PROJECT_ROOT && source install/setup.bash'"
 
 [tasks.build_xnodes]
-cmd = "bash -lc 'cd $PIXI_PROJECT_ROOT && colcon build --symlink-install --packages-select xnodes'"
+cmd = "bash -lc 'cd $PIXI_PROJECT_ROOT && colcon build --packages-select xnodes'"
 depends-on = ["clean_xnodes"]
 
 [tasks.init_xarm]
@@ -62,6 +62,7 @@ vcstool = "*"
 pupil-apriltags =  "*" 
 pydantic = "*"
 scipy = ">=1.16.3, <2"
+webpolicy = { git = "https://github.com/mhyatt000/webpolicy.git", rev = "master" }
 
 [dependencies]
 python = "3.11.*"

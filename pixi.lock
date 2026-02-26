@@ -7,8 +7,6 @@ environments:
     - url: https://conda.anaconda.org/conda-forge/
     indexes:
     - https://pypi.org/simple
-    options:
-      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -893,8 +891,12 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zziplib-0.13.69-he45264a_2.conda
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/55/e2/2537ebcff11c1ee1ff17d8d0b6f4db75873e3b0fb32c2d4a2ee31ecb310a/docstring_parser-0.17.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/83/81/793d78c91b0546b3b1f08e55fdd97437174171cd7d70e46098f1a4d94b7b/jax-0.7.1-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/4d/72/304018d46703f337787f010735f70d17212f86778fcba8bb5cf678f8e460/jaxlib-0.7.1-cp311-cp311-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/94/54/e7d793b573f298e1c9013b8c4dade17d481164aa517d1d7148619c2cedbf/markdown_it_py-4.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/a9/80/19189ea605017473660e43762dc853d2797984b3c7bf30ce656099add30c/ml_dtypes-0.5.4-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+      - pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c1/a2/2bdede02648f892912bf37527ee3d86f41b164410f7f9a0f170beeec8b28/pupil_apriltags-1.0.4.post11-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/5a/87/b70ad306ebb6f9b585f114d0ac2137d792b48be34d732d60e597c2f8465a/pydantic-2.12.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c8/be/8fed28dd0a180dca19e72c233cbf58efa36df055e5b9d90d64fd1740b828/pydantic_core-2.41.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
@@ -903,6 +905,8 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/dc/9b/47798a6c91d8bdb567fe2698fe81e0c6b7cb7ef4d13da4114b41d239f65d/typing_inspection-0.4.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/34/ac/8719fcb891c690394751114952e65f6f9f31259b6f62a10d7825b81f887e/tyro-1.0.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/6c/d5/4aca2c05481a0fb74bd2660b14b0dd0ea975e4f38bc150511a64c55af986/vcstool-0.3.0-py3-none-any.whl
+      - pypi: git+https://github.com/mhyatt000/webpolicy.git?rev=master#457d39ac1b09363a2e73eeb31698dab124e9891c
+      - pypi: https://files.pythonhosted.org/packages/d2/ae/0ee92b33087a33632f37a635e11e1d99d429d3d323329675a6022312aac2/websockets-16.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
 packages:
 - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
   sha256: fe51de6107f9edc7aa4f786a70f4a883943bc9d39b3bb7307c04c41410990726
@@ -3111,6 +3115,45 @@ packages:
   purls: []
   size: 681643
   timestamp: 1754514437930
+- pypi: https://files.pythonhosted.org/packages/83/81/793d78c91b0546b3b1f08e55fdd97437174171cd7d70e46098f1a4d94b7b/jax-0.7.1-py3-none-any.whl
+  name: jax
+  version: 0.7.1
+  sha256: 056e576e0e58465506125699f48111ac8891cce4c9ebf034704c42b219dfd4a6
+  requires_dist:
+  - jaxlib<=0.7.1,>=0.7.1
+  - ml-dtypes>=0.5.0
+  - numpy>=1.26
+  - opt-einsum
+  - scipy>=1.12
+  - jaxlib==0.7.1 ; extra == 'minimum-jaxlib'
+  - jaxlib==0.7.0 ; extra == 'ci'
+  - jaxlib<=0.7.1,>=0.7.1 ; extra == 'tpu'
+  - libtpu==0.0.20.* ; extra == 'tpu'
+  - requests ; extra == 'tpu'
+  - jaxlib<=0.7.1,>=0.7.1 ; extra == 'cuda'
+  - jax-cuda12-plugin[with-cuda]<=0.7.1,>=0.7.1 ; extra == 'cuda'
+  - jaxlib<=0.7.1,>=0.7.1 ; extra == 'cuda12'
+  - jax-cuda12-plugin[with-cuda]<=0.7.1,>=0.7.1 ; extra == 'cuda12'
+  - jaxlib<=0.7.1,>=0.7.1 ; extra == 'cuda13'
+  - jax-cuda13-plugin[with-cuda]<=0.7.1,>=0.7.1 ; extra == 'cuda13'
+  - jaxlib<=0.7.1,>=0.7.1 ; extra == 'cuda12-local'
+  - jax-cuda12-plugin<=0.7.1,>=0.7.1 ; extra == 'cuda12-local'
+  - jaxlib<=0.7.1,>=0.7.1 ; extra == 'cuda13-local'
+  - jax-cuda13-plugin<=0.7.1,>=0.7.1 ; extra == 'cuda13-local'
+  - jaxlib<=0.7.1,>=0.7.1 ; extra == 'rocm'
+  - jax-rocm60-plugin<=0.7.1,>=0.7.1 ; extra == 'rocm'
+  - kubernetes ; extra == 'k8s'
+  - xprof ; extra == 'xprof'
+  requires_python: '>=3.11'
+- pypi: https://files.pythonhosted.org/packages/4d/72/304018d46703f337787f010735f70d17212f86778fcba8bb5cf678f8e460/jaxlib-0.7.1-cp311-cp311-manylinux_2_27_x86_64.whl
+  name: jaxlib
+  version: 0.7.1
+  sha256: eaf5f68f53bf4dcb93b6512538547667625588e4f3ccaeef048788fd18d8c0d5
+  requires_dist:
+  - scipy>=1.12
+  - numpy>=1.26
+  - ml-dtypes>=0.5.0
+  requires_python: '>=3.11'
 - conda: https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.6-pyhcf101f3_1.conda
   sha256: fc9ca7348a4f25fed2079f2153ecdcf5f9cf2a0bc36c4172420ca09e1849df7b
   md5: 04558c96691bed63104678757beb4f8d
@@ -5681,6 +5724,22 @@ packages:
   purls: []
   size: 93471
   timestamp: 1746450475308
+- pypi: https://files.pythonhosted.org/packages/a9/80/19189ea605017473660e43762dc853d2797984b3c7bf30ce656099add30c/ml_dtypes-0.5.4-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+  name: ml-dtypes
+  version: 0.5.4
+  sha256: 19b9a53598f21e453ea2fbda8aa783c20faff8e1eeb0d7ab899309a0053f1483
+  requires_dist:
+  - numpy>=1.21
+  - numpy>=1.21.2 ; python_full_version >= '3.10'
+  - numpy>=1.23.3 ; python_full_version >= '3.11'
+  - numpy>=1.26.0 ; python_full_version >= '3.12'
+  - numpy>=2.1.0 ; python_full_version >= '3.13'
+  - absl-py ; extra == 'dev'
+  - pytest ; extra == 'dev'
+  - pytest-xdist ; extra == 'dev'
+  - pylint>=2.6.0 ; extra == 'dev'
+  - pyink ; extra == 'dev'
+  requires_python: '>=3.9'
 - conda: https://conda.anaconda.org/conda-forge/linux-64/mpg123-1.32.9-hc50e24c_0.conda
   sha256: 39c4700fb3fbe403a77d8cc27352fa72ba744db487559d5d44bf8411bb4ea200
   md5: c7f302fd11eeb0987a6a5e1f3aed6a21
@@ -6100,6 +6159,11 @@ packages:
   purls: []
   size: 3165399
   timestamp: 1762839186699
+- pypi: https://files.pythonhosted.org/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl
+  name: opt-einsum
+  version: 3.4.0
+  sha256: 69bb92469f86a1565195ece4ac0323943e83477171b91d24c35afe028a90d7cd
+  requires_python: '>=3.8'
 - conda: https://conda.anaconda.org/conda-forge/linux-64/orocos-kdl-1.5.3-hecca717_0.conda
   sha256: f1ac73e2a809a0e838e55afd521313a441d2d159621d2295a65700c7d519ead8
   md5: 9b780914fe0015a0d18631a4b32e5446
@@ -16245,6 +16309,23 @@ packages:
   purls: []
   size: 140476
   timestamp: 1765821981856
+- pypi: git+https://github.com/mhyatt000/webpolicy.git?rev=master#457d39ac1b09363a2e73eeb31698dab124e9891c
+  name: webpolicy
+  version: 0.1.0
+  requires_dist:
+  - jax
+  - jaxlib
+  - msgpack>=1.1.0
+  - numpy>=1.23.5
+  - rich>=14.0.0
+  - tyro
+  - websockets>=15.0.1
+  requires_python: '>=3.11'
+- pypi: https://files.pythonhosted.org/packages/d2/ae/0ee92b33087a33632f37a635e11e1d99d429d3d323329675a6022312aac2/websockets-16.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
+  name: websockets
+  version: '16.0'
+  sha256: 08d7af67b64d29823fed316505a89b86705f2b7981c07848fb5e3ea3020c1abe
+  requires_python: '>=3.10'
 - conda: https://conda.anaconda.org/conda-forge/noarch/wheel-0.45.1-pyhd8ed1ab_1.conda
   sha256: 1b34021e815ff89a4d902d879c3bd2040bc1bd6169b32e9427497fa05c55f1ce
   md5: 75cb7132eb58d97896e173ef12ac9986
