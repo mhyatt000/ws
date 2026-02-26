@@ -42,7 +42,7 @@ cwd = "src/xarm_ros2"
 env = { ARGUMENT = "hello" }
 
 [tasks.build_xarm]
-cmd = "colcon build --base-paths $PIXI_PROJECT_ROOT/src/xarm_ros2"
+cmd = "bash -lc 'colcon build --base-paths $PIXI_PROJECT_ROOT/src/xarm_ros2 --cmake-clean-cache --cmake-args -DCMAKE_EXE_LINKER_FLAGS=-L$CONDA_PREFIX/lib -DCMAKE_SHARED_LINKER_FLAGS=-L$CONDA_PREFIX/lib -DCMAKE_MODULE_LINKER_FLAGS=-L$CONDA_PREFIX/lib'"
 depends-on = ["init_xarm"]
 
 # ==========
