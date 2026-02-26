@@ -22,6 +22,9 @@ scripts = [".pixi.sh"]
 rqt = {cmd = "ros2 run rqt_image_view rqt_image_view", inputs = ["src"]}
 build = {cmd = "cd $PIXI_PROJECT_ROOT && colcon build --symlink-install", inputs = ["src"]}
 turtle = {cmd =  "ros2 run turtlesim turtlesim_node", inputs = ["src"]}
+xmove = {cmd = "ros2 launch xarm_moveit_config xarm6_moveit_fake.launch.py", inputs = ["src"]}
+performance = {cmd = "bash -lc 'echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'"}
+xservo = {cmd = "ros2 launch xarm_moveit_servo xarm_moveit_servo_realmove.launch.py dof:=7 robot_ip:=192.168.1.231 add_gripper:=true report_type:=dev", inputs = ["src"]}
 
 init = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src'"
 import = "bash -c 'mkdir -p $PIXI_PROJECT_ROOT/src && vcs import $PIXI_PROJECT_ROOT/src < ${REPOS_FILE:-$PIXI_PROJECT_ROOT/ws.repos}'"
