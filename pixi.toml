@@ -35,7 +35,21 @@ status = "bash -c 'vcs status $PIXI_PROJECT_ROOT/src'"
 diff = "bash -c 'vcs diff $PIXI_PROJECT_ROOT/src'"
 clean = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build install log'"
 clean_xnodes = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build/xnodes install/xnodes'"
+
 setup = "bash -lc 'cd $PIXI_PROJECT_ROOT && source install/setup.bash'"
+[tasks.xtest]
+cmd = [
+    "pytest",
+    "tests",
+]
+cwd = "src/xnodes"
+depends-on = [ "build_xnodes", "setup", ]
+
+[tasks.xlaunch]
+cmd = "ros2 launch"
+depends-on = [ "build_xnodes", "setup", ]
+
+
 
 [tasks.build_xnodes]
 cmd = "bash -lc 'cd $PIXI_PROJECT_ROOT && colcon build --packages-select xnodes'"
@@ -96,3 +110,4 @@ ninja = "*"
 # Python libs
 numpy = ">=1.26.4,<2"
 transforms3d = "*"
+ros-humble-usb-cam = ">=0.8.1,<0.9"
