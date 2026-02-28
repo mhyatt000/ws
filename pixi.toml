@@ -37,11 +37,8 @@ clean = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build install log'"
 clean_xnodes = "bash -c 'cd $PIXI_PROJECT_ROOT && rm -rf build/xnodes install/xnodes'"
 
 setup = "bash -lc 'cd $PIXI_PROJECT_ROOT && source install/setup.bash'"
-[tasks.xtest]
-cmd = [
-    "pytest",
-    "tests",
-]
+[tasks.test]
+cmd = [ "pytest", ]
 cwd = "src/xnodes"
 depends-on = [ "build_xnodes", "setup", ]
 
@@ -70,6 +67,7 @@ depends-on = ["init_xarm"]
 # ==========
 
 [pypi-dependencies]
+evdev = "*"
 tyro = "*"
 rich = "*"
 vcstool = "*"
@@ -84,8 +82,8 @@ pip = "*"
 
 # Core ROS
 ros-humble-desktop = ">=0.10.0,<0.11"   # includes rviz2, tf2, rosbag2, etc.
-ros-humble-rmw-cyclonedds-cpp = "*"     # rmw backend
-ros-humble-cyclonedds = "*"
+# ros-humble-rmw-cyclonedds-cpp = "*"     # rmw backend
+# ros-humble-cyclonedds = "*"
 
 # xArm + control stack
 ros-humble-ros2-control = "*"
@@ -111,3 +109,4 @@ ninja = "*"
 numpy = ">=1.26.4,<2"
 transforms3d = "*"
 ros-humble-usb-cam = ">=0.8.1,<0.9"
+flax = ">=0.10.4,<0.11"
