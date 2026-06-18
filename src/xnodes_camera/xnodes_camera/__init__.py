@@ -1,0 +1,1 @@
+"""xnodes_camera package."""

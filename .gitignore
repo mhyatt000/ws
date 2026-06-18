@@ -1,4 +1,8 @@
-src/
+src/*
+!src/xnodes_camera/
+!src/xnodes_camera/**
+!src/xnodes_bringup/
+!src/xnodes_bringup/**
 install/
 log/
 
