@@ -1,4 +1,6 @@
-src/
+src/*
+!src/xnodes/
+!src/xnodes/**
 install/
 log/
 
